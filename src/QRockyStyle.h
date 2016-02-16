@@ -14,16 +14,21 @@ class QROCKYSTYLE_DLLSPEC QRockyStyle : public QProxyStyle {
 public:
     QRockyStyle();
     ~QRockyStyle();
+
+    static qreal em(const QWidget *widget);
+
     void polish(QWidget *widget);
     void polish(QPalette &palette);
     void polish(QApplication *app);
+    QPalette standardPalette() const;
+
     void drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
     void drawPrimitive(PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
-    QPalette standardPalette() const;
 
 private:
     QPalette palette;
+
     static QColor rgb(quint32 rgb);
-    static qreal em(const QWidget *widget);
+
     void drawPushButtonBevel(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const;
 };

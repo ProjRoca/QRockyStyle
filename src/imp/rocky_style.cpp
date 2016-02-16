@@ -1,6 +1,6 @@
 #include "../QRockyStyle.h"
 #include <QApplication>
-#include <QFontMetrics>
+#include <QFontInfo>
 #include <QWidget>
 #include <iostream>
 
@@ -24,6 +24,19 @@ QRockyStyle::QRockyStyle() :
 QRockyStyle::~QRockyStyle() {
 }
 
+qreal QRockyStyle::em(const QWidget *widget) {
+    if(widget) {
+        return widget->fontInfo().pixelSize();
+    } else {
+        auto app = static_cast<QApplication *>(QApplication::instance());
+        if(app) {
+            return QFontInfo(app->font()).pixelSize();
+        } else {
+            return 16;
+        }
+    }
+}
+
 void QRockyStyle::polish(QWidget *widget) {
     widget->setPalette(palette);
 }
@@ -42,17 +55,4 @@ QPalette QRockyStyle::standardPalette() const {
 
 QColor QRockyStyle::rgb(quint32 rgb) {
     return QColor(rgb >> 16, quint8(rgb >> 8), quint8(rgb));
-}
-
-qreal QRockyStyle::em(const QWidget *widget) {
-    if(widget) {
-        return widget->fontMetrics().width('M');
-    } else {
-        auto app = static_cast<QApplication *>(QApplication::instance());
-        if(app) {
-            return app->fontMetrics().width('M');
-        } else {
-            return 14;
-        }
-    }
 }

@@ -7,7 +7,7 @@ INCLUDEPATH	+= ../src
 LIBS		+= -L.. -lQRockyStyle
 
 SOURCES += \
-	src/main.cpp \
+	src/imp/main.cpp \
 	src/imp/main_window.cpp
 
 HEADERS += \
