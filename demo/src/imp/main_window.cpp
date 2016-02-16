@@ -38,20 +38,31 @@ MainWindow::MainWindow(QWidget *parent) :
 
     auto frame = new QWidget;
     auto layout = new QVBoxLayout;
-    layout->setMargin(0);
+    layout->setMargin(qRound(em));
+    layout->setSpacing(qRound(em));
 
     auto toolbar = new QHBoxLayout;
-    {
-        auto toolbtn = new QToolButton;
-        toolbtn->setIcon(QIcon::fromTheme("face-smile"));
-        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
-        toolbar->addWidget(toolbtn);
-    }
+    toolbar->setSpacing(0);
+
+    auto toolbtn0 = new QToolButton;
+    toolbtn0->setIcon(QIcon::fromTheme("document-new"));
+    toolbtn0->setMinimumSize(qRound(2*em), qRound(2*em));
+    toolbar->addWidget(toolbtn0);
+
+    auto toolbtn1 = new QToolButton;
+    toolbtn1->setIcon(QIcon::fromTheme("document-open"));
+    toolbtn1->setMinimumSize(qRound(2*em), qRound(2*em));
+    toolbar->addWidget(toolbtn1);
+
+    auto toolbtn2 = new QToolButton;
+    toolbtn2->setIcon(QIcon::fromTheme("document-save"));
+    toolbtn2->setMinimumSize(qRound(2*em), qRound(2*em));
+    toolbar->addWidget(toolbtn2);
+
     toolbar->addStretch();
     layout->addLayout(toolbar);
 
     auto contents = new QVBoxLayout;
-    contents->setMargin(qRound(em));
     contents->setSpacing(qRound(em));
     
     auto row0 = new QHBoxLayout;
