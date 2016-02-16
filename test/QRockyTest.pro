@@ -2,6 +2,9 @@ TARGET		= QRockyTest
 TEMPLATE	= app
 CONFIG		+= c++11
 QT		+= widgets
+DEPENDPATH	+= ..
+INCLUDEPATH	+= ../src
+LIBS		+= -L.. -lQRockyStyle
 
 SOURCES += \
 	src/main.cpp \
