@@ -1,4 +1,4 @@
-TARGET		= QRockyTest
+TARGET		= QRockyStyleDemo
 TEMPLATE	= app
 CONFIG		+= c++11
 QT		+= widgets

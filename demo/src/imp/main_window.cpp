@@ -4,6 +4,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent) {
+    setWindowTitle("QRockyStyle Demo");
 
     auto frame = new QWidget;
     auto layout = new QVBoxLayout;
