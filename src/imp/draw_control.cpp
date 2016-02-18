@@ -2,25 +2,54 @@
 #include <QPainter>
 #include <QStyleOption>
 
-void QRockyStyle::drawControl(ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const {
-    if(element == CE_PushButtonBevel) {
-        drawPushButtonBevel(element, option, painter, widget);
+static void drawProgressBarGroove(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em, QPalette palette);
+static void drawProgressBarContents(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em, QPalette palette);
+
+void QRockyStyle::drawControl(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const {
+    qreal em = QRockyStyle::em(widget);
+    auto palette = widget ? widget->palette() : this->palette;
+
+    if(element == QStyle::CE_ProgressBarGroove) {
+        drawProgressBarGroove(element, option, painter, widget, em, palette);
+    } else if(element == QStyle::CE_ProgressBarContents) {
+        drawProgressBarContents(element, option, painter, widget, em, palette);
     } else {
         QProxyStyle::drawControl(element, option, painter, widget);
     }
 }
 
-void QRockyStyle::drawPushButtonBevel(ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *widget) const {
-    qreal m = em(widget);
+static void drawProgressBarGroove(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em, QPalette palette) {
     int x, y, w, h;
     option->rect.getRect(&x, &y, &w, &h);
-
+    painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->setPen(QPen((widget ? widget->palette() : palette).midlight(), m/16));
-    if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
-        painter->setBrush((widget ? widget->palette() : palette).midlight());
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(palette.base());
+    painter->drawRoundedRect(QRectF(x, y, w, h), em/4, em/4);
+    painter->restore();
+}
+
+static void drawProgressBarContents(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em, QPalette palette) {
+    int x, y, w, h;
+    option->rect.getRect(&x, &y, &w, &h);
+    auto bar = qstyleoption_cast<const QStyleOptionProgressBar *>(option);
+    if(bar->minimum != bar->maximum) {
+        QRectF rect;
+        if(bar->orientation != Qt::Vertical) {
+            rect = QRectF(x, y, w*1.0*(bar->progress - bar->minimum)/(bar->maximum - bar->minimum), h);
+        } else {
+            qreal subh = h*1.0*(bar->progress - bar->minimum)/(bar->maximum - bar->minimum);
+            rect = QRectF(x+h-subh, y, w, subh);
+        }
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing);
+        painter->setPen(Qt::NoPen);
+        painter->setBrush(palette.highlight());
+        painter->setClipRect(rect);
+        painter->drawRoundedRect(QRectF(x, y, w, h), em/4, em/4);
+        painter->restore();
     } else {
-        painter->setBrush((widget ? widget->palette() : palette).button());
+        // Does not have a indeterminate style
+        Q_ASSERT(bar->minimum != bar->maximum);
     }
-    painter->drawRoundedRect(QRectF(x+m/16, y+m/16, w-m/8, h-m/8), m/4, m/4);
 }
