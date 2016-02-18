@@ -17,6 +17,10 @@ void QRockyStyle::drawPushButtonBevel(ControlElement, const QStyleOption *option
 
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(QPen((widget ? widget->palette() : palette).midlight(), m/16));
-    painter->setBrush((widget ? widget->palette() : palette).button());
+    if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
+        painter->setBrush((widget ? widget->palette() : palette).midlight());
+    } else {
+        painter->setBrush((widget ? widget->palette() : palette).button());
+    }
     painter->drawRoundedRect(QRectF(x+m/16, y+m/16, w-m/8, h-m/8), m/4, m/4);
 }

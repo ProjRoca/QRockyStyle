@@ -116,7 +116,11 @@ MainWindow::MainWindow(QWidget *parent) :
     auto row4 = new QHBoxLayout;
     row4->setSpacing(qRound(em));
     row4->addWidget(new QPushButton("OK"));
-    row4->addWidget(new QPushButton("Cancel"));
+    {
+        auto btn = new QPushButton("Toggle");
+        btn->setCheckable(true);
+        row4->addWidget(btn);
+    }
     contents->addLayout(row4);
 
     layout->addLayout(contents);
