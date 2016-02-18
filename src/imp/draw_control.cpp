@@ -2,34 +2,33 @@
 #include <QPainter>
 #include <QStyleOption>
 
-static void drawProgressBarGroove(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em, QPalette palette);
-static void drawProgressBarContents(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em, QPalette palette);
+static void drawProgressBarGroove(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em);
+static void drawProgressBarContents(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em);
 
 void QRockyStyle::drawControl(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const {
     qreal em = QRockyStyle::em(widget);
-    auto palette = widget ? widget->palette() : this->palette;
 
     if(element == QStyle::CE_ProgressBarGroove) {
-        drawProgressBarGroove(element, option, painter, widget, em, palette);
+        drawProgressBarGroove(element, option, painter, widget, em);
     } else if(element == QStyle::CE_ProgressBarContents) {
-        drawProgressBarContents(element, option, painter, widget, em, palette);
+        drawProgressBarContents(element, option, painter, widget, em);
     } else {
         QProxyStyle::drawControl(element, option, painter, widget);
     }
 }
 
-static void drawProgressBarGroove(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em, QPalette palette) {
+static void drawProgressBarGroove(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em) {
     int x, y, w, h;
     option->rect.getRect(&x, &y, &w, &h);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(palette.base());
+    painter->setBrush(option->palette.base());
     painter->drawRoundedRect(QRectF(x, y, w, h), em/4, em/4);
     painter->restore();
 }
 
-static void drawProgressBarContents(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em, QPalette palette) {
+static void drawProgressBarContents(QStyle::ControlElement, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em) {
     int x, y, w, h;
     option->rect.getRect(&x, &y, &w, &h);
     auto bar = qstyleoption_cast<const QStyleOptionProgressBar *>(option);
@@ -44,7 +43,7 @@ static void drawProgressBarContents(QStyle::ControlElement, const QStyleOption *
         painter->save();
         painter->setRenderHint(QPainter::Antialiasing);
         painter->setPen(Qt::NoPen);
-        painter->setBrush(palette.highlight());
+        painter->setBrush(option->palette.highlight());
         painter->setClipRect(rect);
         painter->drawRoundedRect(QRectF(x, y, w, h), em/4, em/4);
         painter->restore();
