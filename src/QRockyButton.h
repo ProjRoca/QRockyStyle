@@ -20,7 +20,7 @@
 #include "QRockyStyle.h"
 #include <QPushButton>
 
-class QRockyButton : public QPushButton {
+class QROCKYSTYLE_DLLSPEC QRockyButton : public QPushButton {
     Q_OBJECT
 
 public:
