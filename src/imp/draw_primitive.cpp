@@ -1,6 +1,7 @@
 #include "../QRockyStyle.h"
 #include <QPainter>
 #include <QStyleOption>
+#include "../QRockyButton.h"
 
 static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em);
 static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em);
@@ -21,9 +22,12 @@ void QRockyStyle::drawPrimitive(QStyle::PrimitiveElement element, const QStyleOp
     }
 }
 
-static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *, qreal em) {
+static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em) {
     int x, y, w, h;
     option->rect.getRect(&x, &y, &w, &h);
+    auto btn = dynamic_cast<const QRockyButton *>(widget);
+    auto cb = btn ? btn->combineBorders() : QRockyStyle::Combine_None;
+    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/16, cb);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     if(option->state & QStyle::State_Editing) {
@@ -35,23 +39,24 @@ static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *opti
     } else {
         painter->setPen(QPen(option->palette.midlight(), em/16));
     }
-    painter->setBrush(Qt::NoBrush);
-    painter->drawRoundedRect(QRectF(x+em/16, y+em/16, w-em/8, h-em/8), em/4, em/4);
+    painter->strokePath(path, painter->pen());
     painter->restore();
 }
 
 static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em) {
     int x, y, w, h;
     option->rect.getRect(&x, &y, &w, &h);
+    auto btn = dynamic_cast<const QRockyButton *>(widget);
+    auto cb = btn ? btn->combineBorders() : QRockyStyle::Combine_None;
+    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/16, cb);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
-    painter->setPen(Qt::NoPen);
     if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
         painter->setBrush(option->palette.midlight());
     } else {
         painter->setBrush(option->palette.button());
     }
-    painter->drawRoundedRect(QRectF(x+em/16, y+em/16, w-em/8, h-em/8), em/4, em/4);
+    painter->fillPath(path, painter->brush());
     painter->restore();
     drawFrame(element, option, painter, widget, em);
 }

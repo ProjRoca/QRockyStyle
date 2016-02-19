@@ -27,8 +27,21 @@ public:
     void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
     QRect subElementRect(QStyle::SubElement element, const QStyleOption *option, const QWidget *widget = nullptr) const;
 
+    enum CombineBorder {
+        Combine_None   = 0,
+        Combine_Top    = 1,
+        Combine_Left   = 2,
+        Combine_Bottom = 4,
+        Combine_Right  = 8
+    };
+    Q_DECLARE_FLAGS(CombineBorders, CombineBorder);
+
+    static QPainterPath makeRoundedRect(QRectF base_rect, qreal rx, qreal ry, qreal width, CombineBorders cb);
+
 private:
     QPalette palette;
 
     static QColor rgb(quint32 rgb);
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(QRockyStyle::CombineBorders);

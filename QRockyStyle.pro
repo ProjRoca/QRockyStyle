@@ -10,4 +10,5 @@ SOURCES += \
 	src/imp/subelement_rect.cpp
 
 HEADERS += \
-	src/QRockyStyle.h
+	src/QRockyStyle.h \
+	src/QRockyButton.h

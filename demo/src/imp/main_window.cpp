@@ -12,8 +12,8 @@
 #include <QRadioButton>
 #include <QSlider>
 #include <QToolBar>
-#include <QToolButton>
 #include <QRockyStyle.h>
+#include <QRockyButton.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent) {
@@ -44,20 +44,32 @@ MainWindow::MainWindow(QWidget *parent) :
     auto toolbar = new QHBoxLayout;
     toolbar->setSpacing(0);
 
-    auto toolbtn0 = new QToolButton;
-    toolbtn0->setIcon(QIcon::fromTheme("document-new"));
-    toolbtn0->setMinimumSize(qRound(2*em), qRound(2*em));
-    toolbar->addWidget(toolbtn0);
+    {
+        auto toolbtn = new QRockyButton;
+        toolbtn->setIcon(QIcon::fromTheme("document-new"));
+        toolbtn->setCheckable(true);
+        toolbtn->setCombineBorders(QRockyStyle::Combine_Right);
+        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbar->addWidget(toolbtn);
+    }
 
-    auto toolbtn1 = new QToolButton;
-    toolbtn1->setIcon(QIcon::fromTheme("document-open"));
-    toolbtn1->setMinimumSize(qRound(2*em), qRound(2*em));
-    toolbar->addWidget(toolbtn1);
+    {
+        auto toolbtn = new QRockyButton;
+        toolbtn->setIcon(QIcon::fromTheme("document-open"));
+        toolbtn->setCheckable(true);
+        toolbtn->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
+        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbar->addWidget(toolbtn);
+    }
 
-    auto toolbtn2 = new QToolButton;
-    toolbtn2->setIcon(QIcon::fromTheme("document-save"));
-    toolbtn2->setMinimumSize(qRound(2*em), qRound(2*em));
-    toolbar->addWidget(toolbtn2);
+    {
+        auto toolbtn = new QRockyButton;
+        toolbtn->setIcon(QIcon::fromTheme("document-save"));
+        toolbtn->setCheckable(true);
+        toolbtn->setCombineBorders(QRockyStyle::Combine_Left);
+        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbar->addWidget(toolbtn);
+    }
 
     toolbar->addStretch();
     layout->addLayout(toolbar);
