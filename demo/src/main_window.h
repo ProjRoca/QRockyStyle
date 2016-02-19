@@ -1,5 +1,4 @@
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#pragma once
 
 #include <QMainWindow>
 
@@ -10,5 +9,3 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 };
-
-#endif
