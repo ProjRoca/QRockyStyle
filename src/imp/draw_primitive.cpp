@@ -45,6 +45,9 @@ static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *opti
     option->rect.getRect(&x, &y, &w, &h);
     auto btn = dynamic_cast<const QRockyButton *>(widget);
     auto cb = btn ? btn->combineBorders() : QRockyStyle::Combine_None;
+    if(widget && widget->inherits("QComboBoxPrivateContainer")) {
+        cb = QRockyStyle::Combine_Top | QRockyStyle::Combine_Left | QRockyStyle::Combine_Bottom | QRockyStyle::Combine_Right;
+    }
     auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/16, cb);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
