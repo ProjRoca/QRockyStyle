@@ -48,17 +48,17 @@ static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *opti
     if(widget && widget->inherits("QComboBoxPrivateContainer")) {
         cb = QRockyStyle::Combine_Top | QRockyStyle::Combine_Left | QRockyStyle::Combine_Bottom | QRockyStyle::Combine_Right;
     }
-    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/16, cb);
+    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/8, cb);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     if(option->state & QStyle::State_Editing) {
-        painter->setPen(QPen(option->palette.highlight(), em/16));
+        painter->setPen(QPen(option->palette.highlight(), em/8));
     } else if((option->state & QStyle::State_HasFocus) && (option->state & QStyle::State_KeyboardFocusChange)) {
-        painter->setPen(QPen(option->palette.highlight(), em/16));
+        painter->setPen(QPen(option->palette.highlight(), em/8));
     } else if((option->state & QStyle::State_HasFocus) && (element == QStyle::PE_FrameLineEdit)) {
-        painter->setPen(QPen(option->palette.highlight(), em/16));
+        painter->setPen(QPen(option->palette.highlight(), em/8));
     } else {
-        painter->setPen(QPen(option->palette.light(), em/16));
+        painter->setPen(QPen(option->palette.light(), em/8));
     }
     painter->strokePath(path, painter->pen());
     painter->restore();
@@ -69,7 +69,7 @@ static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption
     option->rect.getRect(&x, &y, &w, &h);
     auto btn = dynamic_cast<const QRockyButton *>(widget);
     auto cb = btn ? btn->combineBorders() : QRockyStyle::Combine_None;
-    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/16, cb);
+    auto path = QRockyStyle::makeRoundedRect(QRectF(x, y, w, h), em/4, em/4, em/8, cb);
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
