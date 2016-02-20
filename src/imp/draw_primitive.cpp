@@ -35,6 +35,8 @@ void QRockyStyle::drawPrimitive(QStyle::PrimitiveElement element, const QStyleOp
         drawPanelButton(element, option, painter, widget, em);
     } else if(element == QStyle::PE_PanelButtonTool) {
         drawPanelButton(element, option, painter, widget, em);
+    } else if(element == QStyle::PE_Widget) {
+        drawWidget(element, option, painter, widget, em);
     } else {
         QProxyStyle::drawPrimitive(element, option, painter, widget);
     }
@@ -80,4 +82,13 @@ static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption
     painter->fillPath(path, painter->brush());
     painter->restore();
     drawFrame(element, option, painter, widget, em);
+}
+
+static void drawWidget(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget, qreal em) {
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing);
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(option->palette.background());
+    painter->drawRect(QRectF(option->rect));
+    painter->restore();
 }
