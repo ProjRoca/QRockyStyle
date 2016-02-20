@@ -33,7 +33,7 @@ QRockyStyle::QRockyStyle() :
     palette.setColor(QPalette::ButtonText,    rgb(0xffffff));
     palette.setColor(QPalette::BrightText,    rgb(0x000000));
     palette.setColor(QPalette::Light,         rgb(0xe5e5e5));
-    palette.setColor(QPalette::Midlight,      rgb(0x9fa0a0));
+    palette.setColor(QPalette::Midlight,      rgb(0x667b80));
     palette.setColor(QPalette::Mid,           rgb(0x535353));
     palette.setColor(QPalette::Dark,          rgb(0x3a3e3f));
     palette.setColor(QPalette::Shadow,        rgb(0x262d33));
