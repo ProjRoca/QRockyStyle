@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent) :
         toolbtn->setIcon(QIcon::fromTheme("document-new"));
         toolbtn->setCheckable(true);
         toolbtn->setCombineBorders(QRockyStyle::Combine_Right);
-        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbtn->setMinMaxSize(qRound(2*em), qRound(2*em));
         toolbar->addWidget(toolbtn);
     }
 
@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
         toolbtn->setIcon(QIcon::fromTheme("document-open"));
         toolbtn->setCheckable(true);
         toolbtn->setCombineBorders(QRockyStyle::Combine_Left | QRockyStyle::Combine_Right);
-        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbtn->setMinMaxSize(qRound(2*em), qRound(2*em));
         toolbar->addWidget(toolbtn);
     }
 
@@ -85,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent) :
         toolbtn->setIcon(QIcon::fromTheme("document-save"));
         toolbtn->setCheckable(true);
         toolbtn->setCombineBorders(QRockyStyle::Combine_Left);
-        toolbtn->setMinimumSize(qRound(2*em), qRound(2*em));
+        toolbtn->setMinMaxSize(qRound(2*em), qRound(2*em));
         toolbar->addWidget(toolbtn);
     }
 

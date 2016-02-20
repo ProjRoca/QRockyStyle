@@ -41,6 +41,23 @@ public:
         data_combineBorders = cb;
     }
 
+    void setMinMaxHeight(int h) {
+        setMinimumHeight(h);
+        setMaximumHeight(h);
+    }
+    void setMinMaxSize(const QSize &size) {
+        setMinimumSize(size);
+        setMaximumSize(size);
+    }
+    void setMinMaxSize(int w, int h) {
+        setMinimumSize(w, h);
+        setMaximumSize(w, h);
+    }
+    void setMinMaxWidth(int w) {
+        setMinimumWidth(w);
+        setMaximumWidth(w);
+    }
+
 private:
     QRockyStyle::CombineBorders data_combineBorders = QRockyStyle::Combine_None;
 };
