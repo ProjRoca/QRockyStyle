@@ -12,7 +12,7 @@ set_target_properties(QRockyStyle PROPERTIES
 set_target_properties(QRockyStyle_s PROPERTIES
     CXX_STANDARD 11 POSITION_INDEPENDENT_CODE ON)
 target_compile_definitions(QRockyStyle PRIVATE "QROCKYSTYLE_EXPORT")
-target_compile_definitions(QRockyStyle_s PRIVATE "QROCKYSTYLE_EXPORT")
+target_compile_definitions(QRockyStyle INTERFACE "QROCKYSTYLE_IMPORT")
 
 find_package(Qt5Widgets)
 target_link_libraries(QRockyStyle PUBLIC Qt5::Widgets)

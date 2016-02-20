@@ -2,6 +2,7 @@ TARGET		= QRockyStyleDemo
 TEMPLATE	= app
 CONFIG		+= c++11
 QT		+= widgets
+DEFINE		+= QROCKYSTYLE_IMPORT
 DEPENDPATH	+= ..
 INCLUDEPATH	+= ../src
 LIBS		+= -L.. -lQRockyStyle

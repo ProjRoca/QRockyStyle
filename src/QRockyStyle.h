@@ -21,8 +21,10 @@
 
 #ifdef QROCKYSTYLE_EXPORT
 #define QROCKYSTYLE_DLLSPEC Q_DECL_EXPORT
-#else
+#elif defined(QROCKYSTYLE_IMPORT)
 #define QROCKYSTYLE_DLLSPEC Q_DECL_IMPORT
+#else
+#define QROCKYSTYLE_DLLSPEC
 #endif
 
 class QROCKYSTYLE_DLLSPEC QRockyStyle : public QProxyStyle {
