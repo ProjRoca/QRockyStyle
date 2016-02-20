@@ -58,7 +58,7 @@ static void drawFrame(QStyle::PrimitiveElement element, const QStyleOption *opti
     } else if((option->state & QStyle::State_HasFocus) && (element == QStyle::PE_FrameLineEdit)) {
         painter->setPen(QPen(option->palette.highlight(), em/16));
     } else {
-        painter->setPen(QPen(option->palette.midlight(), em/16));
+        painter->setPen(QPen(option->palette.light(), em/16));
     }
     painter->strokePath(path, painter->pen());
     painter->restore();
@@ -73,7 +73,7 @@ static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
-        painter->setBrush(option->palette.light());
+        painter->setBrush(option->palette.midlight());
     } else {
         painter->setBrush(option->palette.button());
     }
