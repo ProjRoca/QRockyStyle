@@ -73,7 +73,7 @@ static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     if(option->state & (QStyle::State_On | QStyle::State_Sunken)) {
-        painter->setBrush(option->palette.midlight());
+        painter->setBrush(option->palette.light());
     } else {
         painter->setBrush(option->palette.button());
     }
