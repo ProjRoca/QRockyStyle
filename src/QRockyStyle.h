@@ -34,14 +34,10 @@ public:
 
     static qreal em(const QWidget *widget);
 
-    void polish(QWidget *widget);
-    void polish(QPalette &palette);
-    void polish(QApplication *app);
-    QPalette standardPalette() const;
-
     void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex *option, QPainter *painter, const QWidget *widget = nullptr) const;
     void drawControl(QStyle::ControlElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
     void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
+    QPalette standardPalette() const;
     QRect subElementRect(QStyle::SubElement element, const QStyleOption *option, const QWidget *widget = nullptr) const;
 
     enum CombineBorder {

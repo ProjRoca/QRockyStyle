@@ -89,7 +89,7 @@ static void drawWidget(QStyle::PrimitiveElement element, const QStyleOption *opt
     painter->save();
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(option->palette.background());
+    painter->setBrush(option->palette.window());
     painter->drawRect(QRectF(option->rect));
     painter->restore();
 }

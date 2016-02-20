@@ -55,18 +55,6 @@ qreal QRockyStyle::em(const QWidget *widget) {
     }
 }
 
-void QRockyStyle::polish(QWidget *widget) {
-    widget->setPalette(palette);
-}
-
-void QRockyStyle::polish(QPalette &pal) {
-    pal = palette;
-}
-
-void QRockyStyle::polish(QApplication *app) {
-    app->setPalette(palette);
-}
-
 QPalette QRockyStyle::standardPalette() const {
     return palette;
 }
