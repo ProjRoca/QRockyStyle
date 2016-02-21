@@ -20,23 +20,24 @@
 #include <QApplication>
 #include <QFontInfo>
 #include <QWidget>
-#include <iostream>
 
 QRockyStyle::QRockyStyle() :
     QProxyStyle("Fusion") {
-    palette.setColor(QPalette::Window,        rgb(0x262d33));
-    palette.setColor(QPalette::WindowText,    rgb(0xffffff));
-    palette.setColor(QPalette::Base,          rgb(0x424f59));
-    palette.setColor(QPalette::AlternateBase, rgb(0xbbc6d0));
-    palette.setColor(QPalette::Text,          rgb(0xffffff));
-    palette.setColor(QPalette::Button,        rgb(0x363e40));
-    palette.setColor(QPalette::ButtonText,    rgb(0xffffff));
-    palette.setColor(QPalette::BrightText,    rgb(0x000000));
-    palette.setColor(QPalette::Light,         rgb(0x9fa0a0));
-    palette.setColor(QPalette::Midlight,      rgb(0x667b80));
-    palette.setColor(QPalette::Mid,           rgb(0x535353));
-    palette.setColor(QPalette::Dark,          rgb(0x3a3e3f));
-    palette.setColor(QPalette::Shadow,        rgb(0x262d33));
+    palette.setColor(QPalette::Window,          rgb(0x262d33));
+    palette.setColor(QPalette::WindowText,      rgb(0xffffff));
+    palette.setColor(QPalette::Base,            rgb(0x424f59));
+    palette.setColor(QPalette::AlternateBase,   rgb(0xbbc6d0));
+    palette.setColor(QPalette::Text,            rgb(0xffffff));
+    palette.setColor(QPalette::Button,          rgb(0x363e40));
+    palette.setColor(QPalette::ButtonText,      rgb(0xffffff));
+    palette.setColor(QPalette::BrightText,      rgb(0x000000));
+    palette.setColor(QPalette::Light,           rgb(0x9fa0a0));
+    palette.setColor(QPalette::Midlight,        rgb(0x667b80));
+    palette.setColor(QPalette::Mid,             rgb(0x535353));
+    palette.setColor(QPalette::Dark,            rgb(0x3a3e3f));
+    palette.setColor(QPalette::Shadow,          rgb(0x262d33));
+    palette.setColor(QPalette::Highlight,       rgb(0x308cc6));
+    palette.setColor(QPalette::HighlightedText, rgb(0xffffff));
 }
 
 QRockyStyle::~QRockyStyle() {
