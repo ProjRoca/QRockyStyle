@@ -27,9 +27,7 @@ static void drawPanelButton(QStyle::PrimitiveElement element, const QStyleOption
 void QRockyStyle::drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption *option, QPainter *painter, const QWidget *widget) const {
     qreal em = QRockyStyle::em(widget);
 
-    if(element == QStyle::PE_Frame) {
-        drawFrame(element, option, painter, widget, em);
-    } else if(element == QStyle::PE_FrameLineEdit) {
+    if(element == QStyle::PE_FrameLineEdit) {
         drawFrame(element, option, painter, widget, em);
     } else if(element == QStyle::PE_PanelButtonCommand) {
         drawPanelButton(element, option, painter, widget, em);
